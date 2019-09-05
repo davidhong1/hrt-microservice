@@ -1,0 +1,11 @@
+version: '3'
+services:
+  #监控管理台服务
+  monitor-admin:
+    image: hrt/admin-server:latest
+    container_name: hrt-monitor-admin
+    ports:
+      - 9015:9015
+    env_file: .env
+    environment:
+      TZ: Asia/Shanghai

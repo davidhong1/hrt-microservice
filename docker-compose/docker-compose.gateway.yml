@@ -1,0 +1,11 @@
+version: '3'
+services:
+  #监控管理台服务
+  gateway:
+    image: hrt/gateway:latest
+    container_name: hrt-gateway
+    ports:
+      - 8443:8443
+    env_file: .env
+    environment:
+      TZ: Asia/Shanghai

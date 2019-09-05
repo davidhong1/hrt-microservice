@@ -1,0 +1,82 @@
+server:
+  port: 9021
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://${EUREKA_USERNAME:hrt-eureka}:${EUREKA_PASSWORD:123456}@${EUREKA_ZONE_HOST:localhost}:${EUREKA_ZONE_PORT:9000}/eureka/
+
+spring:
+  application:
+    name: device
+  rabbitmq:
+    host: ${RABBIT_MQ_HOST:localhost}
+    port: ${RABBIT_MQ_PORT:5673}
+    username: ${RABBIT_MQ_USERNAME:rabbitmq}
+    password: ${RABBIT_MQ_PASSWORD:123456}
+  redis:
+    host: ${REDIS_HOST:localhost}
+    port: ${REDIS_PORT:6380}
+    password: ${REDIS_PASSWORD:123456}
+    lettuce:
+      pool:
+        max-active: 100
+        max-idle: 20
+        min-idle: 8
+        max-wait: 10000
+  datasource:
+    url: jdbc:${DATASOURCE_DB:mysql}://${DATASOURCE_HOST:localhost}:${DATASOURCE_PORT:3307}/hrt_device
+    username: ${DATASOURCE_USERNAME:root}
+    password: ${DATASOURCE_PASSWORD:123456}
+    driver-class-name: ${DATASOURCE_DRIVER:com.mysql.cj.jdbc.Driver}
+
+  zipkin:
+    enabled: true
+    sender:
+      type: rabbit
+  sleuth:
+    sampler:
+      probability: 1.0
+
+  mvc:
+    throw-exception-if-no-handler-found: true
+  servlet:
+    multipart:
+      max-request-size: "2MB"
+      max-file-size: "2MB"
+  jackson:
+    time-zone: GMT+8
+#  resources:
+#    add-mappings: false
+
+logging:
+  level:
+    java:
+      sql:
+        PreparedStatement: debug
+    com:
+      springboot: debug
+  path: logs/
+  file:
+    max-size: 1GB
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+
+# mybatis配置
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true
+# mybatis-plus配置
+mybatis-plus:
+  global-config:
+    db-config:
+      id-type: auto
+      field-strategy: not_empty
+      table-underline: true
+      db-type: mysql
+      logic-delete-value: 1 # 逻辑已删除值(默认为 1)
+      logic-not-delete-value: 0 # 逻辑未删除值(默认为 0)

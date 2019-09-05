@@ -1,0 +1,64 @@
+server:
+  port: ${SERVER_PORT:8443}
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://${EUREKA_USERNAME:hrt-eureka}:${EUREKA_PASSWORD:123456}@${EUREKA_ZONE_HOST:localhost}:${EUREKA_ZONE_PORT:9000}/eureka/
+
+spring:
+  application:
+    name: ${GATEWAY_NAME:gateway}
+  rabbitmq:
+    host: ${RABBIT_MQ_HOST:localhost}
+    port: ${RABBIT_MQ_PORT:5673}
+    username: ${RABBIT_MQ_USERNAME:rabbitmq}
+    password: ${RABBIT_MQ_PASSWORD:123456}
+  redis:
+    host: ${REDIS_HOST:localhost}
+    port: ${REDIS_PORT:6380}
+    password: ${REDIS_PASSWORD:123456}
+
+  zipkin:
+    enabled: true
+    sender:
+      type: rabbit
+  sleuth:
+    enabled: true
+    http:
+      legacy:
+        enabled: true
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+      routes:
+        - id: device-route
+          uri: lb://device
+          predicates:
+            - Path=/device/**
+          filters:
+            # 二级url路径转发
+            - StripPrefix=1
+        - id: user-route
+          uri: lb://user
+          predicates:
+            - Path=/user/**
+          filters:
+            # 二级url路径转发
+            - StripPrefix=1
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+
+logging:
+  level:
+    com.springboot.cloud.gateway: debug
+    com.jalja.org.spring: debug
+  path: logs/
+  file:
+    max-size: 1GB

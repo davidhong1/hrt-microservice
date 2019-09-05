@@ -1,0 +1,31 @@
+version: '3'
+services:
+  #注册中心
+  eureka-server:
+    image: hrt/eureka-server:latest
+    container_name: hrt-eureka
+    ports:
+      - 9000:9000
+    env_file: .env
+    environment:
+      TZ: Asia/Shanghai
+
+  #配置中心
+  config-server:
+    image: hrt/config-server:latest
+    container_name: hrt-config
+    ports:
+      - 9010:9010
+    env_file: .env
+    environment:
+      TZ: Asia/Shanghai
+
+  #消息中心
+  bug-server:
+    image: hrt/bus-server:latest
+    container_name: hrt-bus
+    ports:
+      - 9005:9005
+    env_file: .env
+    environment:
+      TZ: Asia/Shanghai

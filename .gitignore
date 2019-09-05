@@ -1,0 +1,13 @@
+.idea/
+data/
+logs/
+target/
+
+.DS_Store
+*.iml
+
+**/mvnw
+**/mvnw.cmd
+**/HELP.md
+**/.mvn/wrapper/maven-wrapper.properties
+**/.mvn/wrapper/MavenWrapperDownloader.java

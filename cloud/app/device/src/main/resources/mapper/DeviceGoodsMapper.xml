@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hrt.cloud.app.device.mapper.DeviceGoodsMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.hrt.cloud.app.device.domain.entity.DeviceGoods">
+        <id column="id" property="id" />
+        <result column="gmt_create" property="gmtCreate" />
+        <result column="gmt_modified" property="gmtModified" />
+        <result column="deleted" property="deleted" />
+        <result column="product_id" property="productId" />
+        <result column="device_id" property="deviceId" />
+        <result column="good_id" property="goodId" />
+        <result column="quantity" property="quantity" />
+        <result column="chan" property="chan" />
+        <result column="disabled" property="disabled" />
+    </resultMap>
+
+</mapper>
