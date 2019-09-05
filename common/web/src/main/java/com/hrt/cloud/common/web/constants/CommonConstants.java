@@ -14,7 +14,7 @@ public class CommonConstants {
     public final static String CONTEXT_NAME = "CONTEXT_NAME";
     public final static String JWT_USER = "JWT_USER:";
 
-    // TODO 下面配置不要直接编码在代码中
+    // TODO 下面jwt配置不要直接编码在代码中
 
     public final static String JWT_PRIVATE_KEY = "sj29hellweiadfw";
     public final static long JWT_EXPIRE_TIME = 129600000000L;

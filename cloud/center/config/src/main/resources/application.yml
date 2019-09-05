@@ -20,8 +20,8 @@ spring:
     config:
       server:
         git:
-          uri: https://git.oschina.net/toopoo/config.git
-          searchPaths: /
+          uri: https://github.com/HYUANT/hrt-microservice.git
+          searchPaths: {application}
 
 management:
   endpoints:

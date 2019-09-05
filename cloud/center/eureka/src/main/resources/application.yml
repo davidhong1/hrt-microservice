@@ -1,4 +1,3 @@
-## TODO 配置security
 
 server:
   port: ${EUREKA_PORT:9000}
