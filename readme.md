@@ -39,7 +39,7 @@ cd common && mvn clean install && cd ../docker-compose`
 
 ## 启动基础服务 MySQL、Redis、RabbitMq
 ```
-docker-compose up -d`
+docker-compose up -d
 ```
 
 ## 编译和启动center服务
